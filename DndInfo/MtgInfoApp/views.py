@@ -21,9 +21,6 @@ def search(request):
     searchTerm = request.POST.get('searchTerm')
     searchType = request.POST.get('searchType')
     searchResults = keywordSearch(searchTerm, searchType)
-    # resultsList=[]
-    # for sr in searchResults:
-    #     resultsList.append(sr)
     dynamicData = {'data':searchResults}
     return render(request,'search.html', context=dynamicData)
 
@@ -36,7 +33,6 @@ def home(request):
 #query the database for searchterm and return results
 def keywordSearch(searchTerm, searchType):
     #which collection to hit
-    print (mtgSet.objects.all())
     querySet = []
     if searchType == "set":
         #search set collection
@@ -65,5 +61,4 @@ def keywordSearch(searchTerm, searchType):
         elif keyTermPair[0] == "artist":
             querySet = mtgCard.objects.filter(artist__contains = keyTermPair[1])
     for q in querySet:
-        print(q)
     return querySet

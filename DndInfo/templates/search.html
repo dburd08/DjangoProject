@@ -20,9 +20,11 @@
 
         {% for result in data %}
             <div class="card">
-            {{ result.name }} <br>
-            {{ result.mana_cost }} <br>
-            {{ result.text }} <br>
+            {{ result.name }} 
+            {{ result.mana_cost }} 
+            {{ result.text }}
+            {{ result.block}}
+            {{ result.code }}
             </div>
             <br>
         {% endfor %}

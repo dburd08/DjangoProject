@@ -5,7 +5,6 @@ from django.db import models
 class mtgCardManager(models.Manager):
     def create_card(self, json):
         mtgcard = self.create(**json)
-        mtgcard.save()
         return mtgcard
 
 class mtgCard(models.Model):
@@ -56,7 +55,6 @@ class mtgCard(models.Model):
 class mtgSetManager(models.Manager):
     def create_set(self, json):
         mtgset = self.create(**json)
-        mtgset.save()
         return mtgset
 
 class mtgSet(models.Model):
