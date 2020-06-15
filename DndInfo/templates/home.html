@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Django</title>
+        <style>
+            .keywordList {
+                display: inline-block,
+                padding: 1rem
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Magic The Gathering Index</h1>
+        <form method="POST" action="/searchResults/">
+            {% csrf_token %}
+            <label for="mtgSearch">Search for Magic Cards</label>
+            <select name="searchType" id="searchType">
+                <option value="card">Card</option>
+                <option value="set">Set</option>
+            </select>
+            <input type="search" id="mtgSearch" name="searchTerm">
+            <button>Search</button>
+        </form>
+
+        <br>
+        <span class="keywordList">Card search terms</span>
+        <ul class="keywordList">
+            <li> name/text search: keyword </li> 
+            <li> card type search: cardType </li>
+            <li> color: color </li>
+            <li> artist </li>
+        </ul>
+        <br>
+        <span class="keywordList">Set search terms</span>
+        <ul class="keywordList">
+            <li>block: block</li>
+            <li>set name: name</li>
+            <li>code: code </li>
+        </ul>
+    </body>
+
+</html>
