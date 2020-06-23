@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .dataHelper import magicCardsDataRequest, magicSetsDataRequest
 from django.db.models import Q
-from .models import *
+from .models import mtgCard, mtgSet
 # Create your views here.
 
 #similar to a controller or list of controllers
@@ -31,11 +31,13 @@ def home(request):
 
 
 #query the database for searchterm and return results
+#searchTerm: user provided input
+#searchType: dropdown menu selection
 def keywordSearch(searchTerm, searchType):
     #which collection to hit
     querySet = []
+    #search set collection
     if searchType == "set":
-        #search set collection
         keyTermPair = searchTerm.split("=")
         #perform db query based on search operator in user submited string
         if keyTermPair[0] == "code":
@@ -44,21 +46,23 @@ def keywordSearch(searchTerm, searchType):
             querySet = mtgSet.objects.filter(block = keyTermPair[1])
         elif keyTermPair[0] == "name":
              querySet = mtgSet.objects.filter(name = keyTermPair[1])
+    #search card collection
     if searchType =="card":
-        #search card collection
         keyTermPair = searchTerm.split("=")
         #perform db query based on search operator in user submited string
         if keyTermPair[0] == "keyword":
             #term exists in card name or text
-            querySet = mtgCard.objects.filter(Q(keyword__contains = keyTermPair[1])
-                                            | Q(text__contains = keyTermPair[1]))
+            querySet = mtgCard.objects.filter(Q(keyword__contains = keyTermPair[1])| 
+                    Q(text__contains = keyTermPair[1]))
         elif keyTermPair[0] == "cardType":
             #check all type fields
-            querySet = mtgCard.objects.filter(Q(type = keyTermPair[1]) | Q(types__contains = keyTermPair[1])
-                                            | Q(supertypes__contains = keyTermPair[1]) | Q(subtypes__contains = keyTermPair[1]))
+            querySet = mtgCard.objects.filter(
+                    Q(type = keyTermPair[1]) | 
+                    Q(types__contains = keyTermPair[1])
+                    Q(supertypes__contains = keyTermPair[1]) | 
+                    Q(subtypes__contains = keyTermPair[1]))
         elif keyTermPair[0] == "color":
             querySet = mtgCard.objects.filter(colors__contains = keyTermPair[1])
         elif keyTermPair[0] == "artist":
             querySet = mtgCard.objects.filter(artist__contains = keyTermPair[1])
-    for q in querySet:
     return querySet
