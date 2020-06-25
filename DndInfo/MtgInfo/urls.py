@@ -22,4 +22,5 @@ urlpatterns = [
     path('index/', views.index),
     path('searchResults/', views.search),
     path('',views.home),
+
 ]

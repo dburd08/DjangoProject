@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .dataHelper import magicCardsDataRequest, magicSetsDataRequest
 from django.db.models import Q
+from django.core import serializers
+from .dataHelper import magicCardsDataRequest, magicSetsDataRequest
 from .models import mtgCard, mtgSet
 # Create your views here.
 
@@ -21,8 +22,10 @@ def search(request):
     searchTerm = request.POST.get('searchTerm')
     searchType = request.POST.get('searchType')
     searchResults = keywordSearch(searchTerm, searchType)
-    dynamicData = {'data':searchResults}
-    return render(request,'search.html', context=dynamicData)
+    searchResultsJson = serializers.serialize('json', searchResults)
+    print(searchResultsJson)
+    dynamicData = {'data': searchResultsJson}
+    return render(request,'/react/src/reactSearch.html', context=dynamicData)
 
 
 #app landing page, contains input field for search

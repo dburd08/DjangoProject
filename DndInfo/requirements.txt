@@ -1,0 +1,12 @@
+Python 3 needs to be installed and added to system path variable
+MongoDb should be installed
+
+
+Python requirements (installed with pip install <package name> )
+
+django #provides framework for web application
+
+mtgsdk #provides Card and Set data objects for results from the MTG api
+
+djongo #provides framework for django to connect to a MongoDb
+
