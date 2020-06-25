@@ -7,7 +7,7 @@ from .models import mtgCard, mtgSet
 #get cards from MTG api
 def magicCardsDataRequest():
     #get smaller set of cards
-    cardsSmaller = Card.where(page=5).where(pageSize=50).all()
+    cardsSmaller = Card.where(page=8).where(pageSize=100).all()
     addCardsToDatabase(cardsSmaller)
     return cardsSmaller
 

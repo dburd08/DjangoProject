@@ -57,10 +57,10 @@ def keywordSearch(searchTerm, searchType):
         elif keyTermPair[0] == "cardType":
             #check all type fields
             querySet = mtgCard.objects.filter(
-                    Q(type = keyTermPair[1]) | 
-                    Q(types__contains = keyTermPair[1])
-                    Q(supertypes__contains = keyTermPair[1]) | 
-                    Q(subtypes__contains = keyTermPair[1]))
+                    Q(type = keyTermPair[1])
+                    | Q(types__contains = keyTermPair[1])
+                    | Q(supertypes__contains = keyTermPair[1])
+                    | Q(subtypes__contains = keyTermPair[1]))
         elif keyTermPair[0] == "color":
             querySet = mtgCard.objects.filter(colors__contains = keyTermPair[1])
         elif keyTermPair[0] == "artist":
