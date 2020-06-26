@@ -11,9 +11,9 @@ A logic layer that calls a data-rich API (Yummly, Napa, etc.) and stores data fr
 A simple text search feature that allows users to find keywords/phrases from the stored data
 
 ### Endpoints:
-/index - loads data from MTG api into mondoDB
-/      - landing page with search form and search operators
-/searchRults - shows the search results of from user input
+/index - loads data from MTG api into mondoDB <br>
+/      - landing page with search form and search operators <br>
+/searchRults - shows the search results of from user input <br>
 
 ### App start up
 Start mongo db using **mongod** command in a terminal window
