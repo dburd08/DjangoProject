@@ -10,3 +10,7 @@ mtgsdk #provides Card and Set data objects for results from the MTG api
 
 djongo #provides framework for django to connect to a MongoDb
 
+
+Node.js needs to installed for react
+
+npm install loads node_modules defined in package.json

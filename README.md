@@ -1,5 +1,7 @@
 # DjangoProject
 
+
+
 requirements
 
 Use Django to create an app with:
