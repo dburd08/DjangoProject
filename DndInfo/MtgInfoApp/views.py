@@ -23,9 +23,8 @@ def search(request):
     searchType = request.POST.get('searchType')
     searchResults = keywordSearch(searchTerm, searchType)
     searchResultsJson = serializers.serialize('json', searchResults)
-    print(searchResultsJson)
-    dynamicData = {'data': searchResultsJson}
-    return render(request,'/react/src/reactSearch.html', context=dynamicData)
+    dynamicData = {'data': searchResults}
+    return render(request,'search.html', context=dynamicData)
 
 
 #app landing page, contains input field for search
